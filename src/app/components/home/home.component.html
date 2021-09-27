@@ -13,17 +13,22 @@
   </mat-form-field>
 </div>
 <div class="games">
+  <ng-container *ngFor="let game of games">
   <div class="game">
     <div class="game-thumb-container">
       <img
-      src="https://cdn.vox-cdn.com/thumbor/u2TcCq7GZqq2dJfsecxSrNFNS1M=/0x0:1024x1024/320x213/filters:focal(444x567:606x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65813576/mobile_MarioKartTour_screen_01.0.png"
-       alt="">
+      *ngIf="game.background_image"
+      src="{{ game.background_image }}"
+       alt="" style="height: 209px !important;">
+       <p *ngIf="!game.background_image">No image</p>
     </div>
     <div class="game-description">
-      <p class="game-name">Name</p>
+      <p class="game-name">{{ game.name }}</p>
       <div class="game-platforms">
-        <img class="game-platform" src="assets/images/pngwing.png" alt="">
+        <img *ngFor="let gamePlatform of game.parent_platforms"
+        class="game-platform" src="assets/images/{{ gamePlatform.platform.name }}.svg" alt="">
       </div>
       </div>
     </div>
+     </ng-container>
     </div>
